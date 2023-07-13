@@ -13,17 +13,14 @@ def test_show_preview_empty(capsys):
 
 def test_show_preview_files(capsys):
     context = {
-        "all_files": [
-            "src/1.py",
-            "src/2.py",
-            "src/u/a.py",
-            "src/2.py",
-        ],
-        "all_dirs": ["src", "src/u"],
+        "all_files": ["src1", "src2", "src3", "src4", "src5", "src6"],
+        "all_dirs": ["dir1", "dir2", "dir3", "dir4", "dir5", "dir6"],
     }
+
     show_preview(context)
-    expected = """Found 4 files and 2 directories
-First 5 files: ['src/1.py', 'src/2.py', 'src/u/a.py', 'src/2.py']
-First 5 directories: ['src', 'src/u']\n"""
-    captured = capsys.readouterr()
-    assert captured.out == expected
+    output = capsys.readouterr()
+    assert output.out == (
+        "Found 6 files and 6 directories\n"
+        "First 5 files: ['src1', 'src2', 'src3', 'src4', 'src5']\n"
+        "First 5 directories: ['dir1', 'dir2', 'dir3', 'dir4', 'dir5']\n"
+        )
