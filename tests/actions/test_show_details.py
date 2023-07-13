@@ -26,9 +26,10 @@ def test_show_details_file(capsys, tmp_path):
         f"Last modified date: {current_date}\n"
     )
 
+
 def test_show_details_directory(capsys, tmp_path):
     file_path = tmp_path / "test"
-    file_path.mkdir() 
+    file_path.mkdir()
     context = {"base_path": str(file_path)}
     show_details(context)
 
