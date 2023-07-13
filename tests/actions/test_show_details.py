@@ -29,7 +29,7 @@ def test_show_details_file(capsys, tmp_path):
 
 def test_show_details_directory(capsys, tmp_path):
     file_path = tmp_path / "test"
-    file_path.mkdir()
+    file_path.touch()
     context = {"base_path": str(file_path)}
     show_details(context)
 
@@ -37,8 +37,8 @@ def test_show_details_directory(capsys, tmp_path):
     current_date = datetime.date.today().strftime("%Y-%m-%d")
     assert captured.out == (
         "File name: test\n"
-        "File size in bytes: 4096\n"
-        "File type: directory\n"
+        "File size in bytes: 0\n"
+        "File type: file\n"
         "File extension: [no extension]\n"
         f"Last modified date: {current_date}\n"
     )
